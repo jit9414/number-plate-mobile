@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#14243d">
+  <meta name="description" content="Shri Ganesh Motors number plate orders">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <title>Number Plate Orders · Shri Ganesh Motors</title>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="Shri Ganesh Motors home"><span class="brand-mark">SGM</span><span><strong>SHRI GANESH MOTORS</strong><small>NUMBER PLATE ORDERS</small></span></a>
+    <div class="top-actions"><span id="syncBadge" class="sync-badge"><i></i><span>Offline cache</span></span><button id="installButton" class="icon-button hidden" aria-label="Install app">↓</button><button id="settingsButton" class="icon-button" aria-label="Cloud settings">⚙</button></div>
+  </header>
+
+  <main id="top" class="page">
+    <section class="welcome"><div><p class="eyebrow">PLATE HANDOVER</p><h1>Number plate orders</h1><p class="muted">Track dealer receipt and customer delivery.</p></div><button id="newOrderButton" class="primary-button">＋ New order</button></section>
+    <section class="stats"><article><span>All orders</span><strong id="totalCount">0</strong></article><article class="amber"><span>Dealer pending</span><strong id="dealerPending">0</strong></article><article class="green"><span>Customer pending</span><strong id="customerPending">0</strong></article></section>
+    <section class="toolbar"><label class="search"><span>⌕</span><input id="searchInput" type="search" placeholder="Search customer, registration or frame" autocomplete="off"></label><button id="refreshButton" class="secondary-button">↻ Sync</button></section>
+    <div id="syncNotice" class="notice hidden" role="status"></div>
+    <div class="list-heading"><h2>Orders</h2><span id="resultCount">0 records</span></div>
+    <section id="ordersList" class="orders-list"></section>
+    <section id="emptyState" class="empty-state hidden"><span>▤</span><h3>No number plate orders found</h3><p>Connect to Google Drive or add an order to get started.</p></section>
+    <p class="privacy-note">Encrypted cloud data · Local offline cache · Changes sync automatically</p>
+  </main>
+
+  <div id="settingsModal" class="modal-backdrop hidden" role="presentation"><section class="sheet settings-sheet" role="dialog" aria-modal="true" aria-labelledby="settingsTitle"><header class="sheet-header"><div><p class="eyebrow">SHARED CLOUD DATA</p><h2 id="settingsTitle">Connect Google Drive</h2><p class="muted">Use the same Google account and backup password as the desktop app.</p></div><button class="icon-button close-settings" aria-label="Close">×</button></header><div class="sheet-body"><label>Google OAuth Web Client ID<input id="webClientId" autocomplete="off" placeholder="…apps.googleusercontent.com"></label><label>Cloud backup password<input id="backupPassword" type="password" autocomplete="current-password" placeholder="Same password used on desktop"></label><button id="connectButton" class="primary-button full-width">Continue with Google</button><p class="help-text">The OAuth Web Client ID is public and may be saved on this phone. Your backup password stays only in memory for this session. Google sign-in token is short-lived and is not saved here.</p><div class="settings-divider"></div><p id="accountLine" class="account-line">Not connected</p><button id="forgetThisDevice" class="text-button hidden">Disconnect this phone</button></div></section></div>
+
+  <div id="orderModal" class="modal-backdrop hidden" role="presentation"><section class="sheet order-sheet" role="dialog" aria-modal="true" aria-labelledby="orderTitle"><header class="sheet-header"><div><p class="eyebrow">CUSTOMER &amp; VEHICLE</p><h2 id="orderTitle">New number plate order</h2><p class="muted">Changes save to this phone and sync to Drive.</p></div><button id="closeOrder" class="icon-button" aria-label="Close">×</button></header><form id="orderForm" class="sheet-body">
+    <input id="orderId" type="hidden">
+    <div class="form-grid"><label>Customer name *<input id="customerName" required maxlength="120" placeholder="Customer full name"></label><label>Registration No. *<input id="registrationNo" required maxlength="32" autocapitalize="characters" placeholder="RJ21 AB 1234"></label><label>Frame No. *<input id="frameNo" required maxlength="80" autocapitalize="characters" placeholder="Frame number"></label><label>Engine No. *<input id="engineNo" required maxlength="80" autocapitalize="characters" placeholder="Engine number"></label><label>Registration date *<input id="registrationDate" type="date" required></label><label>Dealer received<select id="dealerReceived"><option>No</option><option>Yes</option></select></label><label>Customer received<select id="customerReceived"><option>No</option><option>Yes</option></select></label><label>Received date<input id="receivedDate" type="date"></label><label class="wide">Remark<textarea id="remark" maxlength="1000" rows="3" placeholder="Optional note"></textarea></label></div>
+    <footer class="sheet-actions"><button id="cancelOrder" type="button" class="secondary-button">Cancel</button><button id="saveOrder" type="submit" class="primary-button">Save order</button></footer>
+  </form></section></div>
+
+  <div id="toast" class="toast hidden" role="status"></div>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="app.js" defer></script>
+</body>
+</html>

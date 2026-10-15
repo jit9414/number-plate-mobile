@@ -1,0 +1,14 @@
+{
+  "name": "Shri Ganesh Motors Number Plate Orders",
+  "short_name": "SGM Plates",
+  "description": "Manage number plate orders on mobile",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f3f6fa",
+  "theme_color": "#14243d",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

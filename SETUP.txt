@@ -1,0 +1,66 @@
+SHRI GANESH MOTORS · NUMBER PLATE MOBILE APP
+============================================
+
+This folder is an installable mobile web app (PWA). It uses the same encrypted
+Google Drive Number Plate backup as the Windows desktop program.
+
+ONE-TIME SETUP
+--------------
+1. Install and open the updated Number Plate Manager 1.0.8 installer on the
+   Windows PC that already has the correct Google Drive connection. Keep the
+   same Google account and cloud backup password. While online, let the app
+   finish its startup cloud check. It upgrades the older desktop-only backup
+   to the mobile-compatible encrypted format and keeps the old local database
+   as a safety copy.
+
+2. In the same Google Cloud project used by the desktop app, make sure the
+   Google Drive API is enabled and the OAuth consent screen includes the
+   drive.appdata and userinfo.email scopes. If the app is in Testing mode, add
+   the Google email you will use as a test user.
+
+3. In Google Cloud Console > Google Auth Platform > Clients, create a new
+   OAuth client with application type “Web application”. Do not use the
+   Desktop OAuth client here. Add the HTTPS origin of the mobile website to
+   “Authorized JavaScript origins” after hosting it. Do not add a Client Secret
+   to this mobile app; the Web Client ID is enough for its browser sign-in.
+
+4. Host the CONTENTS of this folder on any HTTPS static website host. Keep
+   index.html at the site root. HTTPS is required for Google sign-in and the
+   installable/offline PWA features. After publishing, return to the Web OAuth
+   client and add the site's origin, for example https://your-site.example
+   (origin only: no page path or trailing /index.html).
+
+5. Open the HTTPS site on the phone using Chrome or another supported browser.
+   Open Settings, enter the OAuth Web Client ID and the same 8+ character cloud
+   backup password used on desktop, then tap “Continue with Google”. Choose the
+   same Google account. Use the browser's “Install app” / “Add to Home Screen”
+   command, or the install icon shown in the app when available.
+
+DAILY USE
+---------
+- The phone loads the newest encrypted Drive snapshot after you connect.
+- Add, edit and delete changes are saved on the phone first and uploaded to
+  Drive automatically when online. The phone checks for other-device changes
+  about every 15 seconds while open.
+- The Windows app checks Drive before opening and then about every 15 seconds.
+  Close and reopen it if you need an immediate startup check.
+- Use one device at a time for edits when practical. If an offline phone and
+  another device both changed the data, the app presents both choices and
+  will not silently replace either copy.
+- The phone keeps a local browser cache. Its backup password and Google access
+  token are held in memory, not saved. After closing/reopening the app, enter
+  the password and sign in again to sync. The Google access token may expire
+  while the app is open; tap Sync and sign in again when prompted.
+- Offline changes remain queued on that phone. When internet returns, tap
+  Sync. If the cloud also changed, review the conflict prompt before applying
+  phone edits.
+
+IMPORTANT
+---------
+- This is encrypted snapshot sync with update checks, not a server-side live
+  database. It is intended for one-at-a-time device use and detects conflicts.
+- The website's authorized HTTPS origin must exactly match the origin entered
+  in the Google Web OAuth client.
+- Keep the Drive backup password safe. Without it, the encrypted cloud copy
+  cannot be opened.
+- Keep separate manual backups as an extra recovery option.
